@@ -55,4 +55,18 @@ select name, round(population/1000000, 2), round(gdp/1000000000,2) from world wh
 select name, round((gdp/population), -3) from world where gdp > 1000000000000;
 
 
-11. 
+11. Show the name and capital where the name and the capital have the same number of characters.
+
+select name, capital from world where len(capital) = len(name) 
+
+
+12. Show the name and the capital where the first letters of each match. Don't include countries where the name and the capital are the same word.
+
+select name, capital from world where name != capital and left(name, 1) = left(capital, 1)
+
+13. Find the country that has all the vowels and no spaces in its name.
+
+SELECT name
+   FROM world
+WHERE name LIKE '%a%' and name Like '%e%' and name Like '%i%' and name LIKE '%o%' and name LIKE '%u%'
+  AND name NOT LIKE '% %'	
