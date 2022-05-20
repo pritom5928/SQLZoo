@@ -23,4 +23,22 @@ WHERE name IN ('Argentina', 'Australia')
 
 select name, population from world where population > (select population from world where name = 'United Kingdom') and population <(select population from world where name = 'Germany')
 
-5. 
+5. Show the name and the population of each country in Europe. Show the population as a percentage of the population of Germany.
+
+
+select name, CONCAT(
+              CONVERT(decimal, 
+                 (population/(select population from world 
+                              where name = 'germany')) * 100),'%') 
+from world where continent = 'Europe'
+
+6. Which countries have a GDP greater than every country in Europe? [Give the name only.] (Some countries may have NULL gdp values)
+
+
+select name from world 
+   where gdp is not null and gdp > 
+      all(select gdp from world 
+      where gdp is not null and continent = 'europe')
+
+
+7. 
