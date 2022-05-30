@@ -40,5 +40,10 @@ select name from world
       all(select gdp from world 
       where gdp is not null and continent = 'europe')
 
+or ==>
+
+select name from world 
+where gdp > (select max(gdp) from world where continent = 'europe') 
+
 
 7. 
