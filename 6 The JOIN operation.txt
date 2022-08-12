@@ -35,6 +35,18 @@ select Distinct(go.player) from goal as go join game as ga on go.matchid=ga.id w
 select e.teamname, count(*) as goals from eteam as e join goal as go on e.id = go.teamid group by e.teamname;
 
 
-10
+10 Show the stadium and the number of goals scored in each stadium.
+
+SELECT g.Stadium, COUNT(*) AS Goals FROM Goal AS go LEFT JOIN Game AS g on  go.matchid = g.id GROUP BY g.Stadium;
+
+11. For every match involving 'POL', show the matchid, date and the number of goals scored.
+
+select ga.id as matchid, ga.mdate, count(*) from game as ga join goal as go on ga.id = go.matchid where ga.team1 = 'POL' or ga.team2 = 'POL' group by ga.id, ga.mdate;
+
+12. For every match where 'GER' scored, show matchid, match date and the number of goals scored by 'GER'
+
+select go.matchid, ga.mdate, count(*)  from goal as go join game as ga on go.matchid = ga.id where go.teamid = 'GER' group by go.matchid, ga.mdate;
+
+13. 
 
 
